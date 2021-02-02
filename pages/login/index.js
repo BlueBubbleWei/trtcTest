@@ -16,8 +16,8 @@ Page({
     // 要传的参数 authentication phoneNo userType
     // 如果认证成功的话，就跳转页面
     if(options.authentication){
-    this.setData({phoneNumber: options.phoneNo})
-     this.switchPage(options.userType)
+      this.setData({phoneNumber: options.phoneNo})
+      this.switchPage(options.userType)
     }
     // wx.hideHomeButton()
   },
