@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#a5bcff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "面审列表",
+  "backgroundColor": "#a5bcff",
+  "backgroundTextStyle": "light"
+}

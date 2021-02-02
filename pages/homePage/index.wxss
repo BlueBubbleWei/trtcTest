@@ -1,0 +1,21 @@
+/* pages/homePage/index.wxss */
+.homePage{
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  color: #000;
+}
+.word {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 400rpx;
+  text-align: center;
+}
+.btn{
+  margin-top: 40rpx;
+  border-radius: 8rpx;
+  background: orange;
+}

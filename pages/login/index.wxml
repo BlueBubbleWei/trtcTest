@@ -1,0 +1,7 @@
+<!--pages/login/index.wxml-->
+<view class="container">
+  <view class="login-box">
+    <input class="phone" placeholder="请输入手机号"  model:value="{{phoneNumber}}" type="number" maxlength="11" />
+    <button class="submit" bindtap="submit">登录</button>
+  </view>
+</view>

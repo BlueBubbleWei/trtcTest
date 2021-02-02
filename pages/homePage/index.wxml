@@ -1,0 +1,7 @@
+<!--pages/homePage/index.wxml-->
+<view class="homePage">
+  <view class="word">
+    <view class="tip">平安商业保理面审演示</view>
+    <button class="btn" bindtap="goUrl">开始</button>
+  </view>
+</view>

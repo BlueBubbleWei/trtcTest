@@ -1,0 +1,22 @@
+<!--pages/login/supervisor/index.wxml-->
+<view class="supervisor">
+  <view wx:if="{{taskList.length}}">
+    <view class="list-tit">
+      <text class="name">任务列表</text>
+      <text class="name">状态</text>
+      <text class="name">操作</text>
+    </view>
+    <view wx:for="{{taskList}}" class="list-area">
+      <text class="order">{{ index +1 }}</text>
+      <text class="name">{{ item.custName }}</text>
+      <text class="status">{{ item.status }}</text>
+      <image class="icon" mode="widthFix" src="../../../images/video.png" data-info="{{item}}" bindtap="goRoom"></image>
+    </view>
+  </view>
+  <view wx:if="{{showEmptyPage}}" class="noneArea">
+    <view class="none-bg">
+      <image class="bg" mode="widthFix" src="../../../images/none.png"></image>
+    </view>
+    <view class="tips">暂无数据</view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+<!--pages/login/interviewee/index.wxml-->
+<view class="interviewee">
+  <view class="list-tit">
+      <text class="order">序号</text>
+      <text class="name">姓名</text>
+      <text class="company">公司</text>
+      <text class="phoneno">手机号</text>
+      <text class="opt">拨打</text>
+    </view>
+  <view wx:if="{{connectList.length}}" wx:for="{{connectList}}" class="list-area">
+    <text class="order">{{ index +1 }}</text>
+    <text class="name">{{ item.name}}</text>
+    <text class="company">{{ item.custName}}</text>
+    <text class="phone">{{ item.phoneNo}}</text>
+    <image class="icon" mode="widthFix" src="../../../images/video.png" data-info="{{item}}" bindtap="goRoom"></image>
+  </view>
+  <view wx:if="{{!connectList.length}}" class="noneArea">
+    <view class="none-bg">
+      <image class="bg" mode="widthFix" src="../../../images/none.png"></image>
+    </view>
+    <view class="tips">暂无数据</view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#a5bcff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "待办任务",
+  "backgroundColor": "#a5bcff",
+  "backgroundTextStyle": "light"
+}

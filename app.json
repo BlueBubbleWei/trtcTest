@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/homePage/index",
+    "pages/room/room",
+    "pages/login/index",
+    "pages/login/interviewee/index",
+    "pages/login/supervisor/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "平安商业保理面审",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

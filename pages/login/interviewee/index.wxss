@@ -1,0 +1,114 @@
+/* pages/login/interviewee/index.wxss */
+.interviewee{
+  width:  100vw;
+  height: 100vh;
+  padding-top: 17px;
+  box-sizing: border-box;
+  /* background: linear-gradient(180deg, #2f9de2, #57bdbf); */
+  background: linear-gradient(to top,#f1eefc,#9dc6ff 70%,#a5bcff);
+}
+.list-area {
+  padding: 5px 20rpx;
+}
+.list-area .order {
+  padding: 0 8rpx;
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  color: #666;
+}
+.list-area .name {
+  padding: 0 20rpx;
+  width: 12vw;
+  display: inline-block;
+  vertical-align: middle;
+  color:  #000;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.list-area .company {
+  /* padding: 0 20rpx; */
+  display: inline-block;
+  vertical-align: middle;
+  width: 22vw;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  color: #000;
+}
+
+.list-area .phone {
+  padding: 0 20rpx;
+  width: 30vw;
+  color: #8E236B;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.list-area .icon {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 8rpx;
+  /* height: 25px; */
+  width: 46rpx;
+}
+.noneArea{
+  width: 100vw;
+  height: 40vw;
+  margin-top: 40vh;
+}
+.noneArea .tips {
+  text-align: center;
+  color: #999;
+}
+.noneArea .none-bg{
+  height: 30vw;
+  margin: 0 auto;
+}
+.none-bg  .bg{
+  display: block;
+  width: 30vw;
+  margin: 0 auto;
+}
+
+.list-tit .order {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 8rpx;
+}
+
+
+.list-tit .name {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 10rpx;
+}
+
+
+.list-tit .company {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 80rpx;
+}
+
+
+.list-tit .phoneno {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 50rpx;
+}
+
+.list-tit .opt {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 40rpx;
+}
