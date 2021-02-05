@@ -1,5 +1,5 @@
 // const baseUrl = 'https://fls-factoring-stg1.pingan.com.cn/wxma_sit2'
-const baseUrl = 'https://fls-factoring-stg1.pingan.com.cn/wx/ma_sit2'
+const baseUrl = 'https://fls-factoring-stg1.pingan.com.cn/wx/ma'
 /**
  * 数据请求模块
  * 接口地址 http://daxun.kuboy.top/apidoc

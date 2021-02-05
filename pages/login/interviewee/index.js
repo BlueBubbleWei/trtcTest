@@ -9,15 +9,16 @@ Page({
     connectList: [{
       id: 123,
       name: 'Emily',
-      jobTitle: '总监',
+      applicantJobTitle: '总监',
       phoneNo: 13255538611
     },{
       id: 123,
       name: 'John',
-      jobTitle: '经理',
+      applicantJobTitle: '经理',
       phoneNo: 13255538612
     }],
-    phoneNo: ''
+    phoneNo: '',
+    userType: ''
   },
 
   /**
@@ -25,7 +26,10 @@ Page({
    */
   onLoad: function (options) {
     console.log('>>>>>>>>', options)
-    this.setData({phoneNo: options.phoneNo})
+    this.setData({
+      phoneNo: options.phoneNo,
+      userType: options.userType
+    })
   },
 
   /**
@@ -45,16 +49,19 @@ Page({
     this.getData()
   },
   getData() {
-    const params = {phoneNo: this.data.phoneNo}
-    request('/wxma/vedio/demo/face/trial/list', params, 'POST').then(res => {
+    const params = {
+                    phoneNo: this.data.phoneNo,
+                    userType: this.data.userType
+                  }
+    request('/wxma/vedio/demo/interview/list', params, 'POST').then(res => {
       console.log('列表数据', res)
       res.data.map((item) => {
-        switch(item.jobTitle){
+        switch(item.applicantJobTitle){
           case "1":
-            item.jobTitle = '法定代表人'
+            item.applicantJobTitle = '法定代表人'
             break
           case "2":
-            item.jobTitle = '实控人'
+            item.applicantJobTitle = '实控人'
             break
         }
         return item

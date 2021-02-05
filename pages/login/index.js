@@ -75,12 +75,12 @@ Page({
     if(Number(userType) === 1) {
       // 跳转到信审
       wx.redirectTo({
-        url: '/pages/login/interviewee/index?phoneNo=' + this.data.phoneNumber
+        url: '/pages/login/interviewee/index?phoneNo=' + this.data.phoneNumber + "&userType=" + userType
       })
     } else if (Number(userType) === 2) {
       // 跳转到企业客户
       wx.redirectTo({
-        url: '/pages/login/supervisor/index?phoneNo=' + this.data.phoneNumber
+        url: '/pages/login/supervisor/index?phoneNo=' + this.data.phoneNumber + "&userType=" + userType
       })
     }
   },

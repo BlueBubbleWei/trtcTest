@@ -8,6 +8,7 @@ Page({
   data: {
     taskList: [],
     phoneNo: '',
+    userType: '',
     showEmptyPage: false
   },
 
@@ -15,7 +16,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({phoneNo: options.phoneNo})
+    this.setData({
+      phoneNo: options.phoneNo,
+      userType: options.userType
+    })
   },
 
   /**
@@ -52,8 +56,11 @@ Page({
 
   },
   getData() {
-    const params = {phoneNo: this.data.phoneNo}
-    request('/wxma/vedio/demo/face/trial/todo', params, 'POST').then(res => {
+    const params = {
+                    phoneNo: this.data.phoneNo,
+                    userType: this.data.userType
+                  }
+    request('/wxma/vedio/demo/interview/list', params, 'POST').then(res => {
       console.log('列表数据', res)
       res.data.map((item) => {
         switch(item.status){

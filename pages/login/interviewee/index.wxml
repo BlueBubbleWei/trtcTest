@@ -9,9 +9,9 @@
     </view>
   <view wx:if="{{connectList.length}}" wx:for="{{connectList}}" class="list-area">
     <text class="order">{{ index +1 }}</text>
-    <text class="name">{{ item.name}}</text>
+    <text class="name">{{ item.applicantName}}</text>
     <text class="company">{{ item.custName}}</text>
-    <text class="phone">{{ item.phoneNo}}</text>
+    <text class="phone">{{ item.applicantPhoneNo}}</text>
     <image class="icon" mode="widthFix" src="../../../images/video.png" data-info="{{item}}" bindtap="goRoom"></image>
   </view>
   <view wx:if="{{!connectList.length}}" class="noneArea">
