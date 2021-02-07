@@ -27,8 +27,10 @@ export function request (url, data, type="GET") {
       },
       data: data || {},
       success: (res) => {
-        // 隐藏加载中
-        wx.hideLoading();
+        if(res.data.code != 200) {
+          // 隐藏加载中
+          wx.hideLoading();
+        }
         // 后续处理
         resolve(res.data)
       }

@@ -1,5 +1,6 @@
 // pages/login/supervisor/index.js
 import { request } from "../../../utils/index.js"
+let timer = null
 Page({
 
   /**
@@ -46,7 +47,7 @@ Page({
         wx.hideHomeButton()
     }
     const that = this
-    setInterval(()=>{
+    timer =setInterval(()=>{
       that.getData()
     }, 2000)
   },
@@ -56,7 +57,8 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    clearTimeout(timer)
+    timer = null
   },
 
   /**

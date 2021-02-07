@@ -99,6 +99,10 @@ Component({
     ],
     audioReverbType: 0,
     audioReverbTypeArray: ['关闭', 'KTV', '小房间', '大会堂', '低沉', '洪亮', '金属声', '磁性'],
+    userIds: {
+      my: '',
+      oppisite: ''
+    } // 放入我的userID和对方的userID，标记离开那一方的状态
 
   },
   /**
@@ -248,6 +252,9 @@ Component({
       if (data.name === 'config') {
         const config = Object.assign({}, DEFAULT_COMPONENT_CONFIG, data.newVal)
         console.log(TAG_NAME, '_propertyObserver config:', config)
+        this.setData({
+          userIds: {my: config.userID, oppisite: ''}
+        })
         // 由于 querystring 只支持 String 类型，做一个类型防御
         if (typeof config.debugMode === 'string') {
           config.debugMode = config.debugMode === 'true' ? true : false
@@ -521,6 +528,7 @@ Component({
      */
     setViewRect(params) {
       console.log(TAG_NAME, 'setViewRect', params)
+      console.error('>>>>>>>>>>>>>>>>>>我被调用了')
       if (this.data.template !== 'custom') {
         console.warn(`如需使用setViewRect方法，请初始化时设置template:"custom", 当前 template:"${this.data.template}"`)
       }
@@ -1234,18 +1242,33 @@ Component({
     _bindEvent() {
       // 远端用户进房
       this.userController.on(EVENT.REMOTE_USER_JOIN, (event)=>{
-        console.log(TAG_NAME, '远端用户进房', event, event.data.userID)
+        this.changeStatus(3)
+        console.error(' event.data.userList>>>>>',  JSON.stringify(event.data.userList, null, 4))
         this.setData({
           userList: event.data.userList,
         }, () => {
           this._emitter.emit(EVENT.REMOTE_USER_JOIN, { userID: event.data.userID })
         })
+        this.setData({userIds: {my: this.data.userIds.my, oppisite: event.data.userID}})
         console.log(TAG_NAME, 'REMOTE_USER_JOIN', 'streamList:', this.data.streamList, 'userList:', this.data.userList)
       })
       // 远端用户离开
       this.userController.on(EVENT.REMOTE_USER_LEAVE, (event)=>{
+        console.error('>>>>>>>>DDDDDD', JSON.stringify(event.data, null, 4))
+        console.error('我的状态3333>>>>>>>', this.data.userInfo.userType, Number(this.data.userInfo.userType) === 2)
         console.log(TAG_NAME, '远端用户离开', event, event.data.userID)
+        let userType
+        if(event.data.userID !== this.data.userIds.my) {
+          if(Number(this.data.userInfo.userType) === 1){
+            userType = 2
+          } else if(Number(this.data.userInfo.userType) === 2){
+            userType = 1
+          }
+        } 
+        console.log('sdfdsfsdfsdf', userType)
+        this.changeStatus(3, userType)
         if (event.data.userID) {
+
           this._setList({
             userList: event.data.userList,
             streamList: event.data.streamList,
@@ -1366,6 +1389,7 @@ Component({
           break
         case 1019:
           console.log(TAG_NAME, '退出房间', code)
+          console.error('>>>>>>>>>>>>>>>run away')
           // 20200421 iOS 仍然没有1019事件通知退房，退房事件移动到 exitRoom 方法里，但不是后端通知的退房成功
           // this._emitter.emit(EVENT.LOCAL_LEAVE, { userID: this.data.pusher.userID })
           break
@@ -2026,8 +2050,8 @@ Component({
         delta: 1,
       })
     },
-    changeStatus(operateCode) {
-      const params = {id: this.data.userInfo.id, phoneNo: this.data.userInfo.phoneNo, userType: this.data.userInfo.userType, operateCode: operateCode}
+    changeStatus(operateCode, userType) {
+      const params = {id: this.data.userInfo.id, phoneNo: this.data.userInfo.phoneNo, userType: userType ? userType : this.data.userInfo.userType, operateCode: operateCode}
       request('/wxma/vedio/demo/interview/status/update', params, 'POST').then(res => {
         console.log('返回的状态', res)
       })
