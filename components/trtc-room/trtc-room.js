@@ -36,6 +36,8 @@ Component({
     },
     userInfo: {
       id: '',
+      phoneNo: '',
+      userType: '',
       type: ''
     }
   },
@@ -990,6 +992,7 @@ Component({
           }, () => {
             // console.log(TAG_NAME, '_setPlayerConfig complete', params, 'streamList:', this.data.streamList)
             resolve(params)
+            this.changeStatus(2)
           })
         } else {
           // 不需要reject，静默处理
@@ -2017,15 +2020,15 @@ Component({
      */
     _hangUp() {
       // 向后台传递用户的状态
-      this.changeStatus()
+      this.changeStatus(3)
       this.exitRoom()
       wx.navigateBack({
         delta: 1,
       })
     },
-    changeStatus() {
-      const params = {id: this.data.userInfo.id, status: 3}
-      request('/wxma/vedio/demo/face/trial/status', params, 'POST').then(res => {
+    changeStatus(operateCode) {
+      const params = {id: this.data.userInfo.id, phoneNo: this.data.userInfo.phoneNo, userType: this.data.userInfo.userType, operateCode: operateCode}
+      request('/wxma/vedio/demo/interview/status/update', params, 'POST').then(res => {
         console.log('返回的状态', res)
       })
     },

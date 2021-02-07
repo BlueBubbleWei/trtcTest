@@ -9,6 +9,7 @@ Page({
     taskList: [],
     phoneNo: '',
     userType: '',
+    roomNo: '',
     showEmptyPage: false
   },
 
@@ -17,9 +18,17 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      id: options.id,
       phoneNo: options.phoneNo,
-      userType: options.userType
+      userType: options.userType,
+      roomNo: options.roomNo,
+      enterRoomFlag: options.enterRoomFlag
     })
+
+    if(this.data.enterRoomFlag){
+      const info = {id: this.data.id}
+      this.enterRoom(this.data.roomNo, info)
+    }
   },
 
   /**
@@ -41,6 +50,7 @@ Page({
       that.getData()
     }, 2000)
   },
+  
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -86,8 +96,7 @@ Page({
   goRoom(e){
     console.log('进入房间')
     const info = e.target.dataset.info
-    const params = {code: 123} 
-    this.enterRoom(params.code, info)
+    this.enterRoom(info.roomNo, info)
   },
   enterRoom: function(roomID, userInfo) {
     const nowTime = new Date()
@@ -118,7 +127,7 @@ Page({
       })
       return
     }
-    const url = `../../room/room?roomID=${roomID}&template=1v1&debugMode=false&cloudenv=PRO&userInfo=${JSON.stringify({id: userInfo.id, type: 'supervisor'})}`
+    const url = `../../room/room?roomID=${roomID}&template=1v1&debugMode=false&cloudenv=PRO&userInfo=${JSON.stringify({id: userInfo.id, phoneNo: this.data.phoneNo, userType: this.data.userType, type: 'supervisor'})}`
     this.tapTime = nowTime
     this.checkDeviceAuthorize().then((result)=>{
       console.log('授权成功', result)
@@ -205,8 +214,8 @@ Page({
   },
   // 向后台传递用户的状态
   changeStatus(info) {
-    const params = {id: info.id, status: 2}
-    request('/wxma/vedio/demo/face/trial/status', params, 'POST').then(res => {
+    const params = {id: info.id, phoneNo: this.data.phoneNo, userType: this.data.userType, operateCode: 1}
+    request('/wxma/vedio/demo/interview/status/update', params, 'POST').then(res => {
       console.log('返回的状态', res)
     })
   },
